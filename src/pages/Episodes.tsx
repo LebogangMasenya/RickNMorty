@@ -1,8 +1,10 @@
-import { useState } from "react";
 // pagination
 import EpisodeList from "../components/EpisodesList";
+import useStore from "../store/store";
 export default function Episodes() {
-    const [currentPage, setCurrentPage] = useState(1);
+    const currentPage = useStore((state) => state.getCurrentPage());
+    const setCurrentPage = useStore((state) => state.setCurrentPage);
+
     const EPISODES_PER_PAGE = 8;
     const totalPages = 5;
 
