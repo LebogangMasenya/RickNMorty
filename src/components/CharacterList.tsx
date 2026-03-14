@@ -52,7 +52,7 @@ export default function CharacterList({ ids }: { ids: number[] }) {
                 </div>
 
                 <div className="flex flex-col gap-8">
-                    <div className="grid grid-cols-4 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-3 md:grid-cols-3 gap-6">
                         {characterList.map(character => (
                             <Character key={character.id} data={character} />
                         ))}

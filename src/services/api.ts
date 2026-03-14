@@ -32,3 +32,8 @@ export const getLocation = async (locationId: string) => {
   )
   return await res.json()
 }
+export const getLocations = async (locationIds: number[]) => {
+  const idString = locationIds.join(',');
+  const res = await fetch(`https://rickandmortyapi.com/api/location/${idString}`)
+  return await res.json()
+}

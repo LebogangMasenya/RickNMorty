@@ -22,16 +22,12 @@ export default function EpisodeList({ids}: {ids: number[]}) {
         <div className="container mx-auto py-8">
   <div className="flex justify-between items-end mb-8 border-b border-base-300 pb-4">
     <div>
-      <h1 className="text-4xl font-black text-primary uppercase tracking-tight">
-        Episodes
-      </h1>
       <p className="text-base-content/60 text-sm">
         Browsing {data.length} entries from the multiverse
       </p>
     </div>
   </div>
 
-  {/* The Grid: 1 column on mobile, 2 on tablets, 3 on large screens */}
   <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
     {data.map((ep) => (
       <EpisodeCard key={ep.id} data={ep} />

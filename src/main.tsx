@@ -29,8 +29,6 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route element={<RootLayout/>}>
             <Route path='/' element={<App />}></Route>
-            <Route path='/episodes' element={<Episodes />}></Route>
-            <Route path='/characters' element={<Characters />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
