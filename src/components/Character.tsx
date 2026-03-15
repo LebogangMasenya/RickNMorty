@@ -3,11 +3,19 @@ import { type CharacterProp } from "./CharacterList";
 export default function CharacterCard({ data }: { data: CharacterProp }) {
   return (
     <div className="card card-compact w-full bg-base-100 shadow-xl border border-base-200 hover:shadow-2xl transition-shadow">
-      <figure>
-        <img 
-          src={data.image} 
-          alt={data.name} 
-          className="w-full aspect-square object-cover"
+      <figure className="relative">
+        <div className="absolute inset-0 flex items-center justify-center bg-base-200 animate-pulse">
+          <span className="loading loading-spinner loading-lg text-primary"></span>
+        </div>
+
+        <img
+          src={data.image}
+          alt={data.name}
+          className="w-full aspect-square object-cover opacity-0 transition-opacity duration-300"
+          onLoad={(e) => {
+        e.currentTarget.classList.remove("opacity-0");
+        e.currentTarget.previousElementSibling?.classList.add("hidden");
+          }}
         />
       </figure>
 
@@ -25,14 +33,14 @@ export default function CharacterCard({ data }: { data: CharacterProp }) {
 
         <div className="mt-2 space-y-1">
           <div className="text-xs font-bold uppercase opacity-50">Last known location:</div>
-          <div className="text-sm truncate">{data.location.name}</div>
+          <div className="text-sm truncate">{data.location?.name}</div>
         </div>
 
         <div className="card-actions justify-end mt-4">
           <button className="btn btn-primary btn-sm btn-outline">
             View Episodes
             <div className="badge badge-secondary badge-xs">
-              {data.episode.length}
+              {data.episode?.length}
             </div>
           </button>
         </div>

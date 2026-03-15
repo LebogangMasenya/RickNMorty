@@ -1,4 +1,3 @@
-import type { ReactEventHandler } from "react";
 interface SearchBarProps {
   onSearch: (value: string) => void;
 }

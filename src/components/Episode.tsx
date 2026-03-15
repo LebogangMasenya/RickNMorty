@@ -10,7 +10,7 @@ export default function EpisodeCard({ data }: { data: EpisodeProp }) {
             <span className="badge badge-secondary font-mono font-bold">
               {data.episode}
             </span>
-            <h2 className="text-lg font-bold truncate max-w-[200px] md:max-w-md">
+            <h2 className="text-lg font-bold truncate max-w-50 md:max-w-md">
               {data.name}
             </h2>
           </div>
