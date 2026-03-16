@@ -48,12 +48,9 @@ export default function CharacterCard({ data }: { data: CharacterProp }) {
           <div className="text-sm truncate">{data.location?.name}</div>
         </div>
 
-        <div className="card-actions justify-end mt-4">          
+        <div className="card-actions justify-end mt-4 w-full">          
           <button className="btn btn-primary btn-sm btn-outline" onClick={handleClick}>
-            View Episodes and Location
-            <div className="badge badge-secondary badge-xs">
-              {data.episode?.length}
-            </div>
+            View Details
           </button>
         </div>
       </div>

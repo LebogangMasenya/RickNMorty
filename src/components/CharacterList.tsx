@@ -96,11 +96,6 @@ export default function CharacterList({ ids }: { ids: number[] }) {
     return (
         <div className="max-w-7xl mx-auto px-4 py-10">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-                <div className="space-y-2">
-                    <h1 className="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary uppercase">
-                        Characters
-                    </h1>
-                </div>
 
                 <div className="flex flex-col gap-8">
                     <div className="grid grid-cols-3 md:grid-cols-3 gap-6">
