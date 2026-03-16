@@ -1,7 +1,7 @@
 import { Characters } from "./Characters"
 import Location from "../components/Location"
 import Episodes from "./Episodes"
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import useStore from "../store/store";
 import { useAllCharacters } from "../services/character.api";
 import { useAllEpisodes } from "../services/episode.api";
@@ -12,7 +12,7 @@ export default function Dashboard() {
     const locationData = useAllLocations();
     useEffect(() => {
         if (characterData.data) {
-            useStore.setState({ allCharacters: characterData.data.results || [] });
+            useStore.setState({ allCharacters: characterData.data || [] });
         }
     }, [characterData.data]);
 
@@ -29,7 +29,6 @@ export default function Dashboard() {
             useStore.setState({ allLocations: locationData.data || [] });
         }
     }, [locationData.data]);
-
 
 
     return (

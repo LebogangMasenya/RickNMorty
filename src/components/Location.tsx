@@ -13,15 +13,16 @@ import useStore from "../store/store";
 export default function Location() {
     const locations: LocationProps[] = [];
     const  selectedLocation = useStore((state) => state.selectedLocation); // This is an array of location IDs or null
-
+    const allLocations = useStore((state) => state.allLocations); // This is the array of all location data from the store
+    const filteredLocations = allLocations.filter((loc) => selectedLocation?.includes(loc.id)); // Filter the locations based on selectedLocation IDs
     
     const { data, isLoading } = fetchLocations(selectedLocation || []);
 
     
     if (isLoading) return <span className="loading loading-spinner"></span>;
     
-    locations.push(...data?.pages.flat() || []);
-
+    //locations.push(...data?.pages.flat() || []);
+    locations.push(...filteredLocations);
     return (
         <div>
             <h2 className="text-2xl font-bold mb-4">Locations</h2>
