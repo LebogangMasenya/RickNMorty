@@ -6,9 +6,8 @@ import Dashboard from './pages/Dashboard';
 function App() {
   // const queryClient = useQueryClient(); // imperative
   return (
-      <div>
         <Dashboard />
-      </div>
+     
   
   )
 }

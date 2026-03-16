@@ -45,14 +45,14 @@ export default function Dashboard() {
 
             <main className="flex-1 flex flex-col h-full">
 
-                <section className="h-3/4 border-b border-slate-700 flex flex-col">
+                <section className="h-6/10 border-b border-slate-700 flex flex-col">
                     <div className="p-4 bg-slate-800/50 font-semibold">Episodes</div>
                     <div className="flex-1 overflow-y-auto p-4">
                         <Episodes />
                     </div>
                 </section>
 
-                <section className="h-1/4 flex flex-col">
+                <section className="h-4/10 flex flex-col">
                     <div className="p-4 bg-slate-800/50 font-semibold">Location</div>
                     <div className="flex-1 overflow-y-auto p-4">
                         <Location />

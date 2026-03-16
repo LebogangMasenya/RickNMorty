@@ -1,6 +1,18 @@
 import { type CharacterProp } from "./CharacterList"; 
+import useStore from "../store/store";
 
 export default function CharacterCard({ data }: { data: CharacterProp }) {
+  const episodeIds = data.episode.map((url) => {
+    const parts = url.split("/");
+    return parseInt(parts[parts.length - 1], 10);
+  });
+
+      const locationId = parseInt(data.location.url.split("/").pop() || "0", 10);
+
+  function handleClick() {
+    useStore.setState({ selectedEpisode: episodeIds || [] });
+    useStore.setState({ selectedLocation: locationId ? [locationId] : [] });
+  }
   return (
     <div className="card card-compact w-full bg-base-100 shadow-xl border border-base-200 hover:shadow-2xl transition-shadow">
       <figure className="relative">
@@ -36,9 +48,9 @@ export default function CharacterCard({ data }: { data: CharacterProp }) {
           <div className="text-sm truncate">{data.location?.name}</div>
         </div>
 
-        <div className="card-actions justify-end mt-4">
-          <button className="btn btn-primary btn-sm btn-outline">
-            View Episodes
+        <div className="card-actions justify-end mt-4">          
+          <button className="btn btn-primary btn-sm btn-outline" onClick={handleClick}>
+            View Episodes and Location
             <div className="badge badge-secondary badge-xs">
               {data.episode?.length}
             </div>
