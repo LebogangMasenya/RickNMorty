@@ -24,8 +24,8 @@ export default function EpisodeList({ ids }: { ids: number[] }) {
   const allEpisodes = episodeStore.flat();
 
   const displayEpisodes = useMemo(() => {
-    if (selectedEpisode) {
-      // 2. Filter the list to include ONLY episodes whose IDs are in your selectedEpisode array
+    if (selectedEpisode && selectedEpisode.length > 0) {
+      // Filter the list to include ONLY episodes whose IDs are in your selectedEpisode array
       const filteredEpisodes = allEpisodes.filter((ep: EpisodeProp) =>
         selectedEpisode.includes(ep.id)
       );

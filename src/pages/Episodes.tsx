@@ -4,7 +4,7 @@ import useStore from "../store/store";
 export default function Episodes() {
     const currentPage = useStore((state) => state.getCurrentPage());
     const setCurrentPage = useStore((state) => state.setCurrentPage);
-
+    const selectedEpisode = useStore((state) => state.selectedEpisode);
     const EPISODES_PER_PAGE = 8;
     const totalPages = 5;
 
@@ -14,6 +14,11 @@ export default function Episodes() {
         (_, i) => startId + i
     );
 
+    function handlePageChange(page: number) {
+        setCurrentPage(page);
+        
+    }
+
 
     const pageIDs = Array.from({ length: totalPages }, (_, i) => i + 1);
     return (
@@ -22,30 +27,19 @@ export default function Episodes() {
                 <EpisodeList ids={currentBatchOfIds} />
             </div>
 
-            <div className="flex flex-col items-center gap-4 mt-auto py-6 border-t border-base-200">
-                <span className="text-xs font-bold uppercase tracking-widest opacity-40">
-                    Dimension Pages
-                </span>
-
-                <div className="join shadow-lg border border-primary/20">
+            {!selectedEpisode && (
+                <div className="join self-center mt-auto">
                     {pageIDs.map((page) => (
                         <button
                             key={page}
+                            className={`join-item btn ${currentPage === page ? 'btn-active' : ''}`}
                             onClick={() => setCurrentPage(page)}
-                            className={`join-item btn btn-md md:btn-lg px-6 ${currentPage === page
-                                    ? 'btn-primary no-animation' // Active State
-                                    : 'hover:btn-secondary'      // Hover State
-                                }`}
                         >
                             {page}
                         </button>
                     ))}
                 </div>
-
-                <p className="text-sm opacity-50">
-                    Showing Page <span className="text-primary font-mono">{currentPage}</span> of {pageIDs.length}
-                </p>
-            </div>
+            )}
         </div>
     )
 

@@ -23,9 +23,6 @@ export default function EpisodeCard({ data }: { data: EpisodeProp }) {
           <div className="stat-desc font-semibold text-primary">
             {data.characters.length} Characters
           </div>
-          <button className="btn btn-ghost btn-xs mt-1">
-            Details →
-          </button>
         </div>
         
       </div>

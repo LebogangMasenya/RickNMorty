@@ -8,7 +8,6 @@ export default function NavBar() {
     <div className="navbar flex row bg-base-100 shadow-md px-4 sticky top-0 z-50">
       <div className="flex-1">
         <NavLink to="/" className="text-xl font-black tracking-tighter flex items-center gap-2">
-          <span className="text-primary text-2xl">⚡</span> 
           RICK & MORTY
         </NavLink>
       </div>
@@ -18,16 +17,6 @@ export default function NavBar() {
           <li>
             <NavLink to="/" end className={linkStyles}>
               Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/episodes" className={linkStyles}>
-              Episodes
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/characters" className={linkStyles}>
-              Characters
             </NavLink>
           </li>
         </ul>

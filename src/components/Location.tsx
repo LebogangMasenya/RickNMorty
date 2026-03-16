@@ -7,22 +7,40 @@ export interface LocationProps {
     url: string;
 }
 
+import { useMemo } from "react";
 import { fetchLocations } from "../services/locations.api";
 import useStore from "../store/store";
 
 export default function Location() {
-    const locations: LocationProps[] = [];
     const selectedLocation = useStore((state) => state.selectedLocation); // This is an array of location IDs or null
     const allLocations = useStore((state) => state.allLocations); // This is the array of all location data from the store
     const filteredLocations = allLocations.filter((loc) => selectedLocation?.includes(loc.id)); // Filter the locations based on selectedLocation IDs
 
     const { data, isLoading } = fetchLocations(selectedLocation || []);
 
+    const displayLocations = useMemo(() => {
+        // CASE A: User has selected specific locations (via Character click)
+        if (selectedLocation && selectedLocation.length > 0) {
+            // Filter from our Master Store
+            const filtered = allLocations.filter((loc) => 
+                selectedLocation.includes(loc.id)
+            );
 
+            // If store is empty/missing these specific locations, fall back to API results
+            if (filtered.length === 0 && data) {
+                return data.pages?.flat() || data    || [];
+            }
+            return filtered;
+        }
+
+        // CASE B: No selection, show default list from API
+        return data?.pages?.flat() || data || [];
+    }, [selectedLocation, allLocations, data]);
     if (isLoading) return <span className="loading loading-spinner"></span>;
 
     //locations.push(...data?.pages.flat() || []);
-    locations.push(...filteredLocations);
+       const locations: LocationProps[] = displayLocations as LocationProps[]; // Type assertion to ensure we have the correct type
+
     return (
         <div>
             <h2 className="text-2xl font-bold mb-4">Locations</h2>
